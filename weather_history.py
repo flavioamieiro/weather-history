@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
+import time
+import sys
+
 from bs4 import BeautifulSoup
 import requests
 
-year=2013
-month=12
-day=27
+
+if len(sys.argv) < 2:
+    print("You need to provide a date in the format YYYY-MM-DD")
+    sys.exit(1)
+
+year, month, day = time.strptime(sys.argv[1], '%Y-%m-%d')[:3]
 
 base_url = "http://www.wunderground.com/history/airport/SBRJ/{year}/{month}/{day}/DailyHistory.html"
 
@@ -14,6 +20,7 @@ response = requests.get(url)
 if response.status_code != 200:
     print("An error occurred while getting data for {day}/{month}/{year}".format(
         year=year, month=month, day=day))
+    sys.exit(1)
 else:
     html = response.content
 
