@@ -41,5 +41,6 @@ while date <= end_date:
         mean_temp = int(table.tbody('tr')[1]('span')[2].text)
 
         sys.stdout.write("{}-{}-{},{}\n".format(year, month, day, mean_temp))
+        sys.stdout.flush()
 
     date = date + datetime.timedelta(1)
