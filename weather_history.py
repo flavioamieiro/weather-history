@@ -40,6 +40,6 @@ while date <= end_date:
         table = soup.find_all(attrs={'id': 'historyTable'})[0]
         mean_temp = int(table.tbody('tr')[1]('span')[2].text)
 
-        print("{}-{}-{},{}".format(year, month, day, mean_temp))
+        sys.stdout.write("{}-{}-{},{}\n".format(year, month, day, mean_temp))
 
     date = date + datetime.timedelta(1)
